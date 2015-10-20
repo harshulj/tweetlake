@@ -45,7 +45,7 @@ def stream(filter, place, follow, track):
                 stream.sample()
             else:
                 stream.filter()
-        except IOError as e:
+        except Exception as e:
             click.echo(click.style("error!: %s" % e, bg='red', fg='white'))
             stream.disconnect()
             click.echo(click.style("Starting Streaming again.", fg='green'))
