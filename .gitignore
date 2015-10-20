@@ -58,6 +58,7 @@ target/
 
 # Data file
 test.json
+data/
 
 # Supervisor
 supervisord.pid
