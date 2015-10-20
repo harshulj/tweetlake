@@ -10,7 +10,8 @@ setup(
     packages=[
         'tweetlake',
         'tweetlake.console',
-        'tweetlake.stream'
+        'tweetlake.stream',
+        'tweetlake.utils'
     ],
     install_requires=[
         'click',

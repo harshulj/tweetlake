@@ -2,7 +2,8 @@ import click
 import tweepy
 
 from tweetlake import config
-from tweetlake.sinks import FileSink
+from tweetlake.utils.sinks import FileSink
+from tweetlake.utils.processors import BasicTweetProcessor
 from tweetlake.stream.stream_listeners import SListener
 
 @click.group()
@@ -28,7 +29,8 @@ def stream(filter, place, follow, track):
         click.echo(click.style('Opening Stream to Twitter to collect sample tweets\n', fg='green'))
 
     data_file = 'data/test.json'
-    file_sink = FileSink(data_file)
+    tweet_processor = BasicTweetProcessor()
+    file_sink = FileSink(data_file, tweet_processor)
 
     # OAuth process, using the keys and tokens
     auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
@@ -43,7 +45,7 @@ def stream(filter, place, follow, track):
                 stream.sample()
             else:
                 stream.filter()
-        except Exception as e:
+        except IOError as e:
             click.echo(click.style("error!: %s" % e, bg='red', fg='white'))
             stream.disconnect()
             click.echo(click.style("Starting Streaming again.", fg='green'))
