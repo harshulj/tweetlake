@@ -1,5 +1,6 @@
 import click
 import tweepy
+import datetime
 
 from tweetlake import config
 from tweetlake.utils.sinks import FileSink
@@ -28,7 +29,8 @@ def stream(filter, place, follow, track):
     else:
         click.echo(click.style('Opening Stream to Twitter to collect sample tweets\n', fg='green'))
 
-    data_file = 'data/test.json'
+    now = datetime.datetime.now()
+    data_file = 'data/test-%s.json' % now.strftime('%Y-%m-%d')
     tweet_processor = BasicTweetProcessor()
     file_sink = FileSink(data_file, tweet_processor)
 
