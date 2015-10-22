@@ -100,3 +100,24 @@ def filter(tweet_type, file, keywords, place, follow):
             stream.disconnect()
             click.echo(click.style("Starting Streaming again.", fg='green'))
 
+@run.command()
+@click.argument('file', type=click.File('rb'))
+@click.option('--lang', default='en', help='Aggregate based on the language of the tweet.')
+def stats(file, lang):
+    '''
+    Use this command to filter on the tweets and get the aggregate numbers.
+    '''
+    click.echo(click.style('Collecting stats from: %s' % file.name, fg='green'))
+    lang_count = 0
+    error_count = 0
+    for line in file:
+        try:
+            tweet = json.loads(line)
+            if tweet.get('lang') == lang:
+                lang_count += 1
+        except Exception as e:
+            click.echo(click.style("%s : " % e, fg='red') + line)
+            error_count += 1
+    print "Unable to decode %d tweets" % error_count
+    print "Total tweets with lang %s: %d" % (lang, lang_count)
+
