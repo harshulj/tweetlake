@@ -16,7 +16,10 @@ class FileSink(Sink):
     '''
 
     def __init__(self, path, processor):
-        self.file = open(path, 'a')
+        if isinstance(path, str):
+            self.file = open(path, 'a')
+        elif isinstance(path, file):
+            self.file = path
         self.processor = processor
 
     def write(self, data):
