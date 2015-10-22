@@ -108,10 +108,12 @@ def stats(file, lang):
     Use this command to filter on the tweets and get the aggregate numbers.
     '''
     click.echo(click.style('Collecting stats from: %s' % file.name, fg='green'))
+    total_count = 0
     lang_count = 0
     error_count = 0
     for line in file:
         try:
+            total_count += 1
             tweet = json.loads(line)
             if tweet.get('lang') == lang:
                 lang_count += 1
@@ -119,5 +121,6 @@ def stats(file, lang):
             click.echo(click.style("%s : " % e, fg='red') + line)
             error_count += 1
     print "Unable to decode %d tweets" % error_count
+    print "Total tweets: %d" % total_count
     print "Total tweets with lang %s: %d" % (lang, lang_count)
 
