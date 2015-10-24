@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='Tweet Lake',
-    version='0.1.dev1',
+    version='0.1.dev2',
     description='Tweet Lake is a commandline interface to Twitter Streaming API and big data project that extracts interesting stats out of tweet corpus.',
     url='https://harshulja.in/projects/tweet-lake/',
     download_url='https://github.com/harshulj/tweetlake/tarball/0.1.dev1',
