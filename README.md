@@ -95,4 +95,4 @@ Using supervisor you can collect Twitter's sample data as we ll as you can colle
 ##### Road Ahead
 This is just a beginning for TweetLake. I want to convert TweetLake into a big data framework for twitter data. A framework like [scrapy](scrapy.org), which can be extended with easy. Currently I am adding support for Support vector Machine and Naive Bayes Classifier. I'll also add some example commands and algorithms. 
 
-If you have any suggestions or comments please write them below. I would love to get a feedback on what features to add.
+If you have any suggestions or comments please open a ticket. I would love to get a feedback on what features to add.
